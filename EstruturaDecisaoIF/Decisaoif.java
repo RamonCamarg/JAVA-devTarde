@@ -23,6 +23,9 @@ public class Decisaoif {
       System.out.println("O Valor do Produto é R$"+precoFinal);
     } 
 
+    /**
+     * 
+     */
     public void descontoIfElse(){
      System.out.println("Informe o Preço do Produto");
      double precoProduto = sc.nextDouble();
@@ -30,8 +33,9 @@ public class Decisaoif {
         if (precoProduto>=200){
         desconto = 10.0;}
 
-        else if (precoProduto>=100) {
+        else if (precoProduto>=100) { 
        desconto 5.0}
         
       else
         }
+      }
