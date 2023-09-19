@@ -45,9 +45,9 @@ public class BorderLay extends JFrame {
         resultPanel.add(totalAmountField);
 
         // Adicionar componentes aos painéis
-        add(inputPanel, BorderLayout.NORTH);
+        add(inputPanel, BorderLayout.CENTER);
         add(buttonPanel, BorderLayout.CENTER);
-        add(resultPanel, BorderLayout.SOUTH);
+        add(resultPanel, BorderLayout.CENTER);
 
         // Configurar o ActionListener para o botão de cálculo
         calculateButton.addActionListener(new ActionListener() {
