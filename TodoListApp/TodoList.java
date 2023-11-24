@@ -244,7 +244,7 @@ taskInputField.addFocusListener(new FocusAdapter() {
     public void focusGained(FocusEvent e) {
         // Lógica para tratar quando o campo de entrada ganha foco
         // Por exemplo, você pode limpar o texto do campo quando ele ganha foco
-        taskInputField.setText("");
+        taskInputField.setText("digite");
     }
 
     public void focusLost(FocusEvent e) {

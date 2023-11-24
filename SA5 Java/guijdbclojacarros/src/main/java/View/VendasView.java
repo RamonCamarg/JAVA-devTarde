@@ -1,19 +1,13 @@
 package View;
 
-import java.awt.GridLayout;
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+
+import java.awt.*;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.util.List;
-
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.table.DefaultTableModel;
 
 import Connection.VendasDAO;
 import Controler.VendasControl;
@@ -42,7 +36,7 @@ public class VendasView extends JPanel {
         super();
         new VendasDAO().criaTabela();
 
-        JPanel painelPrinc = new JPanel(new GridLayout(4,4));
+        JPanel painelPrinc = new JPanel(new GridLayout(4, 4));
         add(painelPrinc);
 
         // Listar carros cadastrados no JCombobox
@@ -59,10 +53,9 @@ public class VendasView extends JPanel {
         clienteComboBox.addItem("Selecionar o cliente");
         // Data Venda
         dataVenda = new JTextField();
-        
-        // Valor Compra 
+
+        // Valor Compra
         valorCompra = new JTextField();
-        
 
         // Preenche o comboBox
         for (Carros carro : carros) {
@@ -86,29 +79,26 @@ public class VendasView extends JPanel {
         painelPrinc.add(valorCompra);
 
         // Criação de um painel para conter os botoes
-        JPanel botoes = new JPanel();
+        JPanel botoes = new JPanel(new FlowLayout(FlowLayout.LEFT)); // Align buttons to the left
         comprar = new JButton("Comprar");
         historico = new JButton("Histórico");
         limpar = new JButton("Limpar");
-        painelPrinc.add(botoes);
-
         botoes.add(comprar);
         botoes.add(limpar);
         botoes.add(historico);
+        add(botoes);
 
         // tabela de carros
         JScrollPane jSPane = new JScrollPane();
         add(jSPane);
 
-        tableModelClient = new DefaultTableModel(new Object[][] {},
+        DefaultTableModel TableModel = new DefaultTableModel(new Object[][] {},
                 new String[] { "Data Venda", "Carro Vendido", "Cliente", "Valor de Compra" });
         tableClient = new JTable(tableModelClient);
         jSPane.setViewportView(tableClient);
 
         // Tratameno de eventos
-
         clienteComboBox.addFocusListener(new FocusAdapter() {
-
             @Override
             public void focusGained(FocusEvent e) {
                 clienteComboBox.removeAllItems();
@@ -116,13 +106,10 @@ public class VendasView extends JPanel {
                 for (Clientes cliente : clientes) {
                     clienteComboBox.addItem(cliente.getNome() + " \t" + cliente.getCpf());
                 }
-
             }
-
         });
 
         carrosComboBox.addFocusListener(new FocusAdapter() {
-
             @Override
             public void focusGained(FocusEvent e) {
                 carrosComboBox.removeAllItems();
@@ -135,21 +122,11 @@ public class VendasView extends JPanel {
         });
 
         VendasControl control = new VendasControl(vendas, tableModelClient, tableClient);
-        comprar.addActionListener(e ->{
-            control.cadastrar(dataVenda.getText(), String.valueOf(carrosComboBox.getSelectedItem()), String.valueOf(clienteComboBox.getSelectedItem()), valorCompra.getText());
+        comprar.addActionListener(e -> {
+            control.cadastrar(dataVenda.getText(), String.valueOf(carrosComboBox.getSelectedItem()),
+                    String.valueOf(clienteComboBox.getSelectedItem()), valorCompra.getText());
         });
-  
-
-        
-
-
-        // Criar um VendasDAO para armazenar as funções para meus botoes,
-        // Enviar= Inserir ao banco de dados e ao mesmo tempo excluir o carro comprado,
-        // mas manter no historico
-        // Histórico = Mostrar todos os dados já inseridos dos carros
-        // Limpar= limpar os campos, voltar o default. Exemplo: Os comboBoxs voltarem
-        // para a primeria linha
-
     }
 
+    // Outros métodos e classes, se houver...
 }

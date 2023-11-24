@@ -4,14 +4,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
 
-public class BorderLay extends JFrame {
+public class CalculadoraFinanceira extends JFrame {
     private JTextField principalField;
     private JTextField rateField;
     private JTextField timeField;
     private JTextField simpleInterestField;
     private JTextField totalAmountField;
 
-    public BorderLay() {
+    public CalculadoraFinanceira() {
         setTitle("Calculadora Financeira");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
@@ -44,10 +44,10 @@ public class BorderLay extends JFrame {
         totalAmountField.setEditable(false);
         resultPanel.add(totalAmountField);
 
-        // Adicionar componentes aos painéis
-        add(inputPanel, BorderLayout.CENTER);
+        // Posicionamento dos elementos 
+        add(inputPanel, BorderLayout.NORTH);
         add(buttonPanel, BorderLayout.CENTER);
-        add(resultPanel, BorderLayout.CENTER);
+        add(resultPanel, BorderLayout.SOUTH);
 
         // Configurar o ActionListener para o botão de cálculo
         calculateButton.addActionListener(new ActionListener() {
@@ -86,7 +86,7 @@ public class BorderLay extends JFrame {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new BorderLay().setVisible(true);
+                new CalculadoraFinanceira().setVisible(true);
             }
         });
     }
